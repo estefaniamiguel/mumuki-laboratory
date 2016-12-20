@@ -1,27 +1,16 @@
-common: &common
-  adapter: postgresql
-  encoding: unicode
-  host: localhost
-  pool: 5
-  username: mumuki
-  password: mumuki
-
-test:
-  <<: *common
-  database: mumuki_test
+default: &default
+  adapter: sqlite3
   pool: 5
   timeout: 5000
 
 development:
-  <<: *common
-  database: mumuki_development
-  pool: 5
-  timeout: 5000
+  <<: *default
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  database: db/test.sqlite3
 
 production:
-  <<: *common
-  database: <%= ENV['PGDATABASE'] %>
-  username: <%= ENV['POSTGRESQL_DB_USERNAME'] %>
-  password: <%= ENV['POSTGRESQL_DB_PASSWORD'] %>
-  host: <%= ENV['POSTGRESQL_DB_HOST'] %>
-  port: <%= ENV['POSTGRESQL_DB_PORT'] %>
+  <<: *default
+  database: db/production.sqlite3

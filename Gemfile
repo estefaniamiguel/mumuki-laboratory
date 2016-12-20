@@ -3,8 +3,12 @@ ruby '~> 2.3'
 
 gem 'rails', '~> 4.1.14'
 
-gem 'pg', '~> 0.18.0'
-gem 'pg_search', '~> 1.0'
+if ENV['MUMUKI_SINGLE_USER_MODE'] 
+  gem 'sqlite3' 
+else
+  gem 'pg', '~> 0.18.0'
+  gem 'pg_search', '~> 1.0'
+end
 
 gem 'uglifier', '~> 2.7'
 
