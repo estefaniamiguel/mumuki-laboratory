@@ -43,6 +43,7 @@ Rails.application.configure do
   config.auth0_client_secret = ENV['MUMUKI_AUTH0_CLIENT_SECRET']
   config.auth0_domain = ENV['MUMUKI_AUTH0_DOMAIN']
 
+  config.office_url = ENV['MUMUKI_OFFICE_URL'] || 'http://office.mumuki.io'
   config.thesaurus_url = ENV['MUMUKI_THESAURUS_URL'] || 'http://thesaurus.mumuki.io'
   config.bibliotheca_url = ENV['MUMUKI_BIBLIOTHECA_URL'] || 'http://bibliotheca-api.mumuki.io'
 

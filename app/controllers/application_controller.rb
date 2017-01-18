@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   include Referer
   include WithComments
   include Accessibility
+  include Theme
   include WithDynamicErrors
   include WithOrganizationChooser
 
@@ -25,7 +26,8 @@ class ApplicationController < ActionController::Base
                 :comments_count,
                 :has_comments?,
                 :subject,
-                :should_choose_organization?
+                :should_choose_organization?,
+                :theme_url
 
   private
 
