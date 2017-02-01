@@ -42,7 +42,6 @@ RSpec.configure do |config|
 
   config.after(:each) do
     Organization.current = nil
-    set_subdomain_host! 'test'
     FileUtils.rm ["#{Mumukit::Auth.config.daybreak_name}.db"], force: true
   end
 end

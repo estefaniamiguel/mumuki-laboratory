@@ -15,8 +15,6 @@ feature 'Choose organization Flow' do
   before { set_current_user! user }
 
   scenario 'when visit implicit central' do
-    set_implicit_central!
-
     visit '/'
 
     expect(page).to have_text('Sign Out')
@@ -25,17 +23,14 @@ feature 'Choose organization Flow' do
   end
 
   scenario 'when visit explicit central' do
-    set_subdomain_host!('central')
-
-    visit '/'
+    visit '/central'
 
     expect(page).not_to have_text('Do you want to go there?')
     expect(page).not_to have_text('pdep')
   end
 
-  scenario 'when visit foo subdomain' do
-    set_subdomain_host!('foo')
-    visit '/'
+  scenario 'when visit test subdomain' do
+    visit '/test'
 
     expect(page).not_to have_text('Do you want to go there?')
     expect(page).not_to have_text('foo')
@@ -43,7 +38,7 @@ feature 'Choose organization Flow' do
 
   scenario 'when user does not have any permission' do
     set_current_user! user2
-    set_implicit_central!
+
     visit '/'
 
     expect(page).not_to have_text('Do you want to go there?')

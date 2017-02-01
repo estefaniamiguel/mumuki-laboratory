@@ -1,19 +1,18 @@
 require 'spec_helper'
 
 feature 'private org' do
-  let(:private_organization) do
+  let(:organization) do
     create(:organization,
            name: 'private',
            public: false,
            book: create(:book, name: 'private', slug: 'mumuki/mumuki-the-private-book'))
   end
 
-  before { set_subdomain_host! private_organization.name }
-  before { private_organization.switch! }
+  before { organization.switch! }
 
   context 'anonymous user' do
     scenario 'should not access' do
-      visit '/guides'
+      visit "/#{organization.name}/guides"
 
       expect(page).not_to have_text('Nobody created a guide for this search yet')
     end
@@ -31,7 +30,7 @@ feature 'private org' do
     scenario 'visitor should raise forbidden error' do
       set_current_user! visitor
 
-      visit '/guides'
+      visit "/#{organization.name}/guides"
       expect(page).to have_text('You are not allowed to see this content.')
       expect(visitor.reload.last_organization).to be nil
     end
@@ -39,7 +38,7 @@ feature 'private org' do
     scenario 'student should access' do
       set_current_user! student
 
-      visit '/guides'
+      visit "/#{organization.name}/guides"
 
       expect(page).to have_text('Which guide do you want to do today?')
       expect(student.reload.last_organization).to eq Organization.current
@@ -48,7 +47,7 @@ feature 'private org' do
     scenario 'teacher should access' do
       set_current_user! teacher
 
-      visit '/guides'
+      visit "/#{organization.name}/guides"
 
       expect(page).to have_text('Which guide do you want to do today?')
       expect(teacher.reload.last_organization).to eq Organization.current

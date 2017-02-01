@@ -2,31 +2,33 @@ Rails.application.routes.draw do
 
   Mumukit::Login.configure_login_routes! self
 
-  root to: 'book#show'
+  root to: 'home#index'
 
-  resources :book, only: [:show]
-  resources :chapters, only: [:show] do
-    resource :appendix, only: :show
-  end
+  scope '/:organization' do
+    resources :book, only: [:show]
+    resources :chapters, only: [:show] do
+      resource :appendix, only: :show
+    end
 
-  # All users
-  resources :exercises, only: [:show, :index] do
+    # All users
+    resources :exercises, only: [:show, :index] do
+      # Current user
+      resources :solutions, controller: 'exercise_solutions', only: :create
+      resources :queries, controller: 'exercise_query', only: :create
+    end
+
+    # All users
+    resources :guides, only: [:show, :index]
+    resources :lessons, only: [:show]
+    resources :complements, only: [:show]
+    resources :exams, only: [:show]
+
+    # All users
+    resource :user, only: [:show]
+
     # Current user
-    resources :solutions, controller: 'exercise_solutions', only: :create
-    resources :queries, controller: 'exercise_query', only: :create
+    resources :comments, only: :index
   end
-
-  # All users
-  resources :guides, only: [:show, :index]
-  resources :lessons, only: [:show]
-  resources :complements, only: [:show]
-  resources :exams, only: [:show]
-
-  # All users
-  resource :user, only: [:show]
-
-  # Current user
-  resources :comments, only: :index
 
   # Routes by slug
   get '/guides/:organization/:repository' => 'guides#show_by_slug', as: :guide_by_slug

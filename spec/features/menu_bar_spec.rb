@@ -4,13 +4,17 @@ feature 'menu bar' do
   let(:chapter) { create(:chapter, lessons: [create(:lesson)]) }
   let(:book) { create(:book, chapters: [chapter], name: 'private', slug: 'mumuki/mumuki-the-private-book') }
   let(:private_organization) { create(:organization, name: 'private', book: book) }
+  let(:organization) do
+    create(:organization,
+           name: 'private',
+           book: create(:book, name: 'private', slug: 'mumuki/mumuki-the-private-book'))
+  end
 
-  before { set_subdomain_host! private_organization.name }
-  before { private_organization.switch! }
+  before { organization.switch! }
 
   context 'anonymous user' do
     scenario 'should not see any app' do
-      visit '/'
+      visit "/#{organization.name}"
 
       expect(page).not_to have_text('Office')
       expect(page).not_to have_text('Classroom')
@@ -29,7 +33,8 @@ feature 'menu bar' do
     scenario 'visitor should not see any app' do
       set_current_user! visitor
 
-      visit '/'
+      visit "/#{organization.name}"
+
       expect(page).not_to have_text('Office')
       expect(page).not_to have_text('Classroom')
       expect(page).not_to have_text('Bibliotheca')
@@ -38,7 +43,7 @@ feature 'menu bar' do
     scenario 'teacher should see classroom' do
       set_current_user! teacher
 
-      visit '/'
+      visit "/#{organization.name}"
 
       expect(page).not_to have_text('Office')
       expect(page).to have_text('Classroom')
@@ -48,7 +53,7 @@ feature 'menu bar' do
     scenario 'janitor should see office' do
       set_current_user! janitor
 
-      visit '/'
+      visit "/#{organization.name}"
 
       expect(page).to have_text('Office')
       expect(page).to have_text('Classroom')
@@ -57,7 +62,7 @@ feature 'menu bar' do
     scenario 'writer should see bibliotheca' do
       set_current_user! writer
 
-      visit '/'
+      visit "/#{organization.name}"
 
       expect(page).not_to have_text('Office')
       expect(page).not_to have_text('Classroom')
@@ -66,7 +71,7 @@ feature 'menu bar' do
     scenario 'owner should see all' do
       set_current_user! owner
 
-      visit '/'
+      visit "/#{organization.name}"
       expect(page).to have_text('Office')
       expect(page).to have_text('Classroom')
       expect(page).to have_text('Bibliotheca')
