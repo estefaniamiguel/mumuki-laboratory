@@ -52,14 +52,14 @@ feature 'Guides Flow' do
       let(:authors) { '' }
 
       scenario 'visit complement by guide by id' do
-        visit "/guides/#{complement.guide.id}"
+        visit "/test/guides/#{complement.guide.id}"
 
         expect(page).to have_text('a complement')
         expect(page).to have_text('Content')
       end
 
       scenario 'visit lesson by id' do
-        visit "/guides/#{lesson.guide.id}"
+        visit "/test/guides/#{lesson.guide.id}"
 
         expect(page).to have_text('awesomeGuide')
         expect(page).to have_text('Content')
@@ -68,7 +68,7 @@ feature 'Guides Flow' do
 
 
       scenario 'visit guide by slug' do
-        visit '/guides/foo/bar'
+        visit '/test/guides/foo/bar'
 
         expect(page).to have_text('awesomeGuide')
         expect(page).to have_text('An awesome guide')
@@ -76,7 +76,7 @@ feature 'Guides Flow' do
       end
 
       scenario 'visit guides from search page, and starts practicing' do
-        visit '/guides'
+        visit '/test/guides'
 
         click_on 'awesomeGuide'
 
@@ -94,7 +94,7 @@ feature 'Guides Flow' do
       let(:authors) { 'Jon Doe' }
 
       scenario 'visit lesson by id' do
-        visit "/guides/#{lesson.guide.id}"
+        visit "/test/guides/#{lesson.guide.id}"
 
         expect(page).to have_text('awesomeGuide')
         expect(page).to have_text('Content')
@@ -104,7 +104,7 @@ feature 'Guides Flow' do
 
 
       scenario 'visit lesson, then exercise' do
-        visit "/guides/#{lesson.guide.id}"
+        visit "/test/guides/#{lesson.guide.id}"
         click_on 'Foo'
 
         expect(page).to have_text('Description of foo')

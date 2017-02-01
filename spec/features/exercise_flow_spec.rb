@@ -37,7 +37,7 @@ feature 'Exercise Flow' do
     end
 
     scenario 'visit exercise by slug' do
-      visit "/exercises/#{problem_1.slug}"
+      visit "/test/exercises/#{problem_1.slug}"
 
       expect(page).to have_text('Succ1')
       expect(page).to_not have_text('Console')
@@ -47,7 +47,7 @@ feature 'Exercise Flow' do
     end
 
     scenario 'visit exercise by id, upload layout' do
-      visit "/exercises/#{problem_3.id}"
+      visit "/test/exercises/#{problem_3.id}"
 
       expect(page).to have_text('Succ3')
       expect(page).to_not have_text('Console')

@@ -17,7 +17,7 @@ feature 'Chapters flow' do
 
   context 'no appendix' do
     scenario 'show chapter, no appendix' do
-      visit "/chapters/#{chapter.id}"
+      visit "/test/chapters/#{chapter.id}"
 
       expect(page).to have_text('Functional Programming')
       expect(page).to have_text('The Basic Values')
@@ -33,7 +33,7 @@ feature 'Chapters flow' do
     before { chapter.topic.update appendix: 'Check this article about endofunctors' }
 
     scenario 'show chapter, with appendix' do
-      visit "/chapters/#{chapter.id}"
+      visit "/test/chapters/#{chapter.id}"
 
       expect(page).to have_text('Functional Programming')
       expect(page).to have_text('The Basic Values')
@@ -45,7 +45,7 @@ feature 'Chapters flow' do
     end
 
     scenario 'show appendix' do
-      visit "/chapters/#{chapter.id}/appendix"
+      visit "/test/chapters/#{chapter.id}/appendix"
       expect(page).to have_text('Appendix')
       expect(page).to have_text('endofunctors')
     end
