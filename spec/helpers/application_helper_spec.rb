@@ -34,14 +34,14 @@ describe ApplicationHelper do
 
     before { reindex_current_organization! }
 
-    it { expect(link_to_path_element(exercise, mode: :plain)).to eq '<a href="/exercises/30-c1-bar-foo3">foo3</a>' }
-    it { expect(link_to_path_element(exercise, mode: :friendly)).to eq '<a href="/exercises/30-c1-bar-foo3">C1: bar - foo3</a>' }
-    it { expect(link_to_path_element(exercise)).to eq '<a href="/exercises/30-c1-bar-foo3">3. foo3</a>' }
+    it { expect(link_to_path_element(exercise, mode: :plain)).to eq '<a href="/test/exercises/30-c1-bar-foo3">foo3</a>' }
+    it { expect(link_to_path_element(exercise, mode: :friendly)).to eq '<a href="/test/exercises/30-c1-bar-foo3">C1: bar - foo3</a>' }
+    it { expect(link_to_path_element(exercise)).to eq '<a href="/test/exercises/30-c1-bar-foo3">3. foo3</a>' }
   end
 
   describe '#link_to_guide' do
     let(:lesson) { create(:lesson, id: 1, name: 'foo') }
-    it { expect(link_to_path_element(lesson)).to start_with '<a href="/lessons/1-foo">foo' }
+    it { expect(link_to_path_element(lesson)).to start_with '<a href="/test/lessons/1-foo">foo' }
   end
 
 end

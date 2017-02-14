@@ -6,7 +6,7 @@ module WithStudentPathNavigation
 
     def button(navigable)
       sibling = sibling_for(navigable)
-      link_to link_icon(sibling), sibling, class: clazz if sibling && sibling != navigable
+      link_to link_icon(sibling), [Organization.current, sibling], class: clazz if sibling && sibling != navigable
     end
 
     def link_icon(sibling)

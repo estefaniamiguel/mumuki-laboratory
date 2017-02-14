@@ -25,7 +25,7 @@ feature 'Exercise Flow' do
 
   context 'not logged user' do
     scenario 'visit exercise from search' do
-      visit '/exercises'
+      visit '/test/exercises'
 
       click_on 'Succ1'
 
@@ -62,7 +62,7 @@ feature 'Exercise Flow' do
     before { set_current_user! user }
 
     scenario 'visit exercise by slug' do
-      visit "/exercises/#{problem_1.slug}"
+      visit "/test/exercises/#{problem_1.slug}"
 
       expect(page).to have_text('Succ1')
       expect(page).to have_text('Console')
@@ -71,7 +71,7 @@ feature 'Exercise Flow' do
     end
 
     scenario 'visit exercise by id, editor right layout' do
-      visit "/exercises/#{problem_1.id}"
+      visit "/test/exercises/#{problem_1.id}"
 
       expect(page).to have_text('Succ1')
       expect(page).to have_text('Console')
@@ -81,7 +81,7 @@ feature 'Exercise Flow' do
     end
 
     scenario 'visit exercise by id, no editor layout, no hint, not queriable language' do
-      visit "/exercises/#{problem_2.id}"
+      visit "/test/exercises/#{problem_2.id}"
 
       expect(page).to have_text('Succ2')
       expect(page).to_not have_text('Console')
@@ -91,7 +91,7 @@ feature 'Exercise Flow' do
     end
 
     scenario 'visit exercise by id, upload layout' do
-      visit "/exercises/#{problem_3.id}"
+      visit "/test/exercises/#{problem_3.id}"
 
       expect(page).to have_text('Succ3')
       expect(page).to have_text('Console')
@@ -101,7 +101,7 @@ feature 'Exercise Flow' do
     end
 
     scenario 'visit exercise by id, upload layout, not queriable language' do
-      visit "/exercises/#{problem_5.id}"
+      visit "/test/exercises/#{problem_5.id}"
 
       expect(page).to have_text('Succ5')
       expect(page).to_not have_text('Console')
@@ -110,7 +110,7 @@ feature 'Exercise Flow' do
     end
 
     scenario 'visit exercise by id, input_bottom layout, extra, no hint' do
-      visit "/exercises/#{problem_4.id}"
+      visit "/test/exercises/#{problem_4.id}"
 
       expect(page).to have_text('Succ4')
       expect(page).to have_text('x = 2')
@@ -121,7 +121,7 @@ feature 'Exercise Flow' do
     end
 
     scenario 'visit playground by id, no extra, no hint' do
-      visit "/exercises/#{playground_1.id}"
+      visit "/test/exercises/#{playground_1.id}"
 
       expect(page).to have_text('Succ5')
       expect(page).to_not have_text('Console')
@@ -131,7 +131,7 @@ feature 'Exercise Flow' do
     end
 
     scenario 'visit playground by id, with extra, no hint' do
-      visit "/exercises/#{playground_2.id}"
+      visit "/test/exercises/#{playground_2.id}"
 
       expect(page).to have_text('Succ6')
       expect(page).to_not have_text('Console')

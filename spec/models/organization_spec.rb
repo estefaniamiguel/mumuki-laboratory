@@ -33,12 +33,6 @@ describe Organization do
     it { expect(public_organization.private?).to be false }
   end
 
-
-  describe '#domain' do
-    it { expect(Organization.domain).to eq 'test.localmumuki.io' }
-    it { expect(central.domain).to eq 'central.localmumuki.io' }
-  end
-
   describe '#notify_assignments_by!' do
     it { expect { Organization.notify_assignments_by! user }.to_not raise_error }
   end

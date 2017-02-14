@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def link_to_tag_list(tags)
-    tags.map { |tag| link_to "##{tag}", exercises_path(q: tag) }.join(', ').html_safe
+    tags.map { |tag| link_to "##{tag}", organization_exercises_path(Organization.current, q: tag) }.join(', ').html_safe
   end
 
   def active_if(expected, current=@current_tab)

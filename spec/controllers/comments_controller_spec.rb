@@ -15,7 +15,7 @@ describe CommentsController do
   end
 
   context 'when authenticated' do
-    before { get :index }
+    before { get :index  }
 
     it { expect(response.status).to eq 403 }
   end

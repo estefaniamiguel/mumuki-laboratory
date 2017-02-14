@@ -25,7 +25,7 @@ feature 'Search Flow' do
   before { reindex_current_organization! }
 
   scenario 'search guides by language' do
-    visit '/guides'
+    visit '/test/guides'
 
     fill_in 'q', with: 'ruby'
     click_on 'search'
@@ -34,7 +34,7 @@ feature 'Search Flow' do
   end
 
   scenario 'search all' do
-    visit '/guides'
+    visit '/test/guides'
 
     click_on 'search'
 
@@ -43,7 +43,7 @@ feature 'Search Flow' do
   end
 
   scenario 'search by language' do
-    visit '/exercises'
+    visit '/test/exercises'
 
     fill_in 'q', with: 'haskell'
     click_on 'search'
@@ -57,7 +57,7 @@ feature 'Search Flow' do
   end
 
   scenario 'search by guide' do
-    visit '/exercises'
+    visit '/test/exercises'
 
     fill_in 'q', with: 'awesomeRubyGuide'
     click_on 'search'
@@ -71,7 +71,7 @@ feature 'Search Flow' do
 
 
   scenario 'search by guide when it does not exists' do
-    visit '/exercises'
+    visit '/test/exercises'
 
     click_on 'Sign in'
 

@@ -10,10 +10,6 @@ class ApplicationRoot
     URI(@url)
   end
 
-  def domain
-    uri.domain
-  end
-
   class << self
 
     def laboratory

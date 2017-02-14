@@ -25,7 +25,7 @@
   <div>
     <h3><%= t(:appendix) %></h3>
     <p>
-      <%= t(:appendix_teaser, link: chapter_appendix_path(@chapter)).html_safe %>
+      <%= t(:appendix_teaser, link: organization_chapter_appendix_path(Organization.current, @chapter)).html_safe %>
     </p>
   </div>
 <% end %>

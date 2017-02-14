@@ -26,7 +26,7 @@ module WithSlug
     end
 
     def by_slug_parts!(args)
-      find_by!(slug: "#{args[:organization]}/#{args[:repository]}")
+      find_by!(slug: Mumukit::Auth::Slug.from_options(args).to_s)
     end
   end
 end

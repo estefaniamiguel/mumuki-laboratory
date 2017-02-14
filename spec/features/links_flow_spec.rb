@@ -18,46 +18,46 @@ feature 'Lessons Flow' do
   before { reindex_organization! other_organization }
 
   scenario 'visit lesson in path' do
-    visit "/lessons/#{lesson.id}"
+    visit "/test/lessons/#{lesson.id}"
 
     expect(page).to have_text('L1')
   end
 
   scenario 'visit lesson not in path' do
-    visit "/lessons/#{other_lesson.id}"
+    visit "/test/lessons/#{other_lesson.id}"
     expect(page).to have_text('You may have mistyped the address or the page may have moved')
   end
 
   scenario 'visit chapter in path' do
-    visit "/chapters/#{chapter.id}"
+    visit "/test/chapters/#{chapter.id}"
 
     expect(page).to have_text('C1')
   end
 
   scenario 'visit chapter not in path' do
-    visit "/chapters/#{other_chapter.id}"
+    visit "/test/chapters/#{other_chapter.id}"
     expect(page).to have_text('You may have mistyped the address or the page may have moved')
   end
 
   scenario 'visit exercise in path' do
-    visit "/exercises/#{exercise.id}"
+    visit "/test/exercises/#{exercise.id}"
 
     expect(page).to have_text('E1')
   end
 
   scenario 'visit exercise not in path' do
-    visit "/exercises/#{other_exercise.id}"
+    visit "/test/exercises/#{other_exercise.id}"
     expect(page).to have_text('You may have mistyped the address or the page may have moved')
   end
 
   scenario 'visit exercise in path' do
-    visit "/complements/#{complement.id}"
+    visit "/test/complements/#{complement.id}"
 
     expect(page).to have_text(complement.name)
   end
 
   scenario 'visit exercise not in path' do
-    visit "/complements/#{other_complement.id}"
+    visit "/test/complements/#{other_complement.id}"
     expect(page).to have_text('You may have mistyped the address or the page may have moved')
   end
 end

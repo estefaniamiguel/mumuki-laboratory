@@ -13,18 +13,18 @@ feature 'Exams Flow' do
   before { reindex_current_organization! }
 
   scenario 'visit exam not in path, by id, anonymous' do
-   visit "/exams/#{other_exam.id}"
+   visit "/test/exams/#{other_exam.id}"
     expect(page).to have_text('You may have mistyped the address or the page may have moved')
   end
 
   scenario 'visit exam in path, by id, anonymous' do
-    visit "/exams/#{exam.id}"
+    visit "/test/exams/#{exam.id}"
 
     expect(page).to have_text('You have no permissions for this content.')
   end
 
   scenario 'visit exam in path, by classroom id, anonymous' do
-    visit "/exams/#{exam.classroom_id}"
+    visit "/test/exams/#{exam.classroom_id}"
 
     expect(page).to have_text('You have no permissions for this content.')
   end
@@ -34,7 +34,7 @@ feature 'Exams Flow' do
     set_current_user! user
     exam.authorize!(user)
     expect_any_instance_of(Exam).to receive(:enabled_for?).and_return(false)
-    visit "/exams/#{exam.classroom_id}"
+    visit "/test/exams/#{exam.classroom_id}"
 
     expect(page).to have_text('This exam is no longer available.')
   end

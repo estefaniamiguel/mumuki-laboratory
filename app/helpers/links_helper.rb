@@ -2,7 +2,7 @@ module LinksHelper
 
   def link_to_path_element(element, options={})
     name = extract_name element, options
-    link_to name, element, options
+    link_to name, [Organization.current, element], options
   end
 
   def link_to_error_404

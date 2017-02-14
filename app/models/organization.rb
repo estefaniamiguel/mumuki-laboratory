@@ -79,6 +79,10 @@ class Organization < ActiveRecord::Base
     name
   end
 
+  def to_param
+    name
+  end
+
   def accessible_exams_for(user)
     exams.select { |exam| exam.accessible_for?(user) }
   end
@@ -86,10 +90,6 @@ class Organization < ActiveRecord::Base
 
   def url_for(path)
     ApplicationRoot.laboratory.url_for(name, path)
-  end
-
-  def domain
-    ApplicationRoot.laboratory.subdominated(name).host
   end
 
   def notify!
