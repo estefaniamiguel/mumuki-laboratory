@@ -1,6 +1,10 @@
 module WithOrganization
   def set_organization!
-    Organization.find_by!(name: (params[:organization] ||'central')).switch!
+    Organization.find_by(name: organization_name)&.switch!
+  end
+
+  def organization_name
+    params[:organization] || 'central'
   end
 
   def visit_organization!
