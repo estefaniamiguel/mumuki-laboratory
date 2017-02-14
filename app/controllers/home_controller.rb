@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
   def index
-    if current_user? && current_user.permissions.present?
-      redirect_to organizations_path
-    else
-      redirect_to [Organization.central, Organization.central.book]
-    end
+    redirect_to [Organization.central, Organization.central.book] if public_user?
+  end
+
+  private
+
+  def public_user?
+    !current_user? || current_user.permissions.empty?
   end
 end
