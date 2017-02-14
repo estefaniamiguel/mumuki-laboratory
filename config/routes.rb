@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # Current user
   resources :comments, only: :index
 
+  resources :organizations, only: :index
+
   scope '/:organization' do
     resources :book, as: 'organization_book', only: [:show]
     resources :chapters, as: 'organization_chapters', only: [:show] do

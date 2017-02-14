@@ -13,7 +13,7 @@ feature 'Standard Flow' do
   before { reindex_current_organization! }
 
   before do
-    visit '/'
+    visit '/test'
   end
 
   scenario 'do an exercise for first time, starting from home' do

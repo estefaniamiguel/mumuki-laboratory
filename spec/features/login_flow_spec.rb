@@ -12,7 +12,7 @@ feature 'Login Flow' do
   before { reindex_current_organization! }
 
   scenario 'can login' do
-    visit '/'
+    visit '/test'
 
     click_on 'Sign in'
 
@@ -24,11 +24,11 @@ feature 'Login Flow' do
   end
 
   scenario 'can login and keeps session' do
-    visit '/'
+    visit '/test'
 
     click_on 'Sign in'
 
-    visit '/'
+    visit '/test'
 
     expect(page).to_not have_text('Sign in')
     expect(page).to have_text('Sign Out')

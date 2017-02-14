@@ -23,7 +23,7 @@ feature 'public org' do
     end
 
     scenario 'from inside' do
-      Capybara.current_session.driver.header 'Referer', 'http://en.mumuki.io/exercises/1'
+      Capybara.current_session.driver.header 'Referer', 'http://mumuki.io'
 
       visit '/'
 
@@ -49,7 +49,7 @@ feature 'public org' do
     end
 
     scenario 'from inside' do
-      Capybara.current_session.driver.header 'Referer', 'http://en.mumuki.io/exercises/1'
+      Capybara.current_session.driver.header 'Referer', 'http://en.mumuki.io/'
 
       visit '/'
 

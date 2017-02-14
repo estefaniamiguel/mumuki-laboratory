@@ -10,7 +10,7 @@ module IconsHelper
 
   def exercise_status_icon(exercise)
     link_to exercise_status_fa_icon(exercise),
-            exercise_path(exercise) if current_user?
+            organization_exercise_path(Organization.current, exercise) if current_user?
   end
 
   def language_icon(language)
