@@ -1,4 +1,3 @@
-#TODO may use mumukit slug
 module WithSlug
   extend ActiveSupport::Concern
 
@@ -11,9 +10,8 @@ module WithSlug
     import_from_json! Mumukit::Bridge::Bibliotheca.new(Rails.configuration.bibliotheca_api_url).send(self.class.name.underscore, slug)
   end
 
-  def slug_parts
-    org, repo = slug.split('/')
-    {organization: org, repository: repo}
+  def to_route_params
+    slug.to_mumukit_slug.to_options.merge(organization: Organization.current)
   end
 
   module ClassMethods
@@ -26,7 +24,7 @@ module WithSlug
     end
 
     def by_slug_parts!(args)
-      find_by!(slug: Mumukit::Auth::Slug.from_options(args).to_s)
+      find_by!(slug: Mumukit::Auth::Slug.join_s(args).to_s)
     end
   end
 end

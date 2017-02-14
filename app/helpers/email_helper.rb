@@ -8,7 +8,7 @@ module EmailHelper
 
 #{t :status}: #{assignment.status}
 
-See #{organization_exercise_by_slug_url(Organization.current, *assignment.exercise.slug_parts)}
+See #{organization_exercise_by_slug_url(assignment.exercise.to_route_params)}
 EOM
   end
 

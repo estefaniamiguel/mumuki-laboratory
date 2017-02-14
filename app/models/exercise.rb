@@ -61,8 +61,8 @@ class Exercise < ActiveRecord::Base
     "#{guide.slug}/#{bibliotheca_id}"
   end
 
-  def slug_parts
-    guide.slug_parts.merge(bibliotheca_id: bibliotheca_id)
+  def to_route_params
+    guide.to_route_params.merge(bibliotheca_id: bibliotheca_id)
   end
 
   def extra
